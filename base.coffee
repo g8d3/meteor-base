@@ -34,8 +34,10 @@ class Definer
 
 if Meteor.isServer
 	model 'posts',
-		fields:
-			title: 'string'
+		# remove fields leave direct types, validations and callbacks
+		string:
+			'title'
+			'body'
 		before:
 			save: [
 				'title.length < 150'
