@@ -17,6 +17,10 @@ template(name='/admin')
 
 template(name='/posts')
 	h3 Posts
-	each posts
-		h4= title
-		p= body
+	//- each posts
+	//- 	h4= title
+	//- 	p= body
+	.container-fluid
+		.row
+			.col-md-12
+				+tabular table=TabularTables.posts class="table table-striped table-bordered table-condensed"

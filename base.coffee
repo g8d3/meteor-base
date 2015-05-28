@@ -24,12 +24,12 @@ class Definer
 @model = (name, def) ->
 	# getter
 	unless def
-		_def = Collection.findOne(name: name).def
+		# _def = Collection.findOne(name: name).def
 		return @_model[name]
 
 	# setter
 	Collection.insert name: name, def: def
-	@_model[name] = _(new Meteor.Collection(name)).extend(def: _def)
+	@_model[name] = _(new Meteor.Collection(name)).extend(def: def)
 
 
 
@@ -48,6 +48,20 @@ model 'posts',
 
 model 'settings', {}
 
+TabularTables = {}
+
+Meteor.isClient && Template.registerHelper('TabularTables', TabularTables);
+
+TabularTables.posts = new Tabular.Table
+	collection: model('posts')
+	name: 'postsTable'
+	columns: [
+		{data: 'title', title: 'title'}
+		{data: 'body', title: 'body'}
+	]
+
+
 if Meteor.isClient
 	Template['/posts'].helpers
-		posts: -> model('posts').find()
+		# posts: -> model('posts').find()
+		# table: -> 

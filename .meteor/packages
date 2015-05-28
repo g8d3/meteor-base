@@ -17,3 +17,5 @@ accounts-password
 accounts-ui
 accounts-google
 iron:router
+aldeed:tabular
+twbs:bootstrap
