@@ -25,10 +25,11 @@ class Definer
 	# getter
 	unless def
 		_def = Collection.findOne(name: name).def
-		return @_model[name] ||= _(new Meteor.Collection(name)).extend(def: _def)
+		return @_model[name]
 
 	# setter
 	Collection.insert name: name, def: def
+	@_model[name] = _(new Meteor.Collection(name)).extend(def: _def)
 
 
 
@@ -49,4 +50,4 @@ model 'settings', {}
 
 if Meteor.isClient
 	Template['/posts'].helpers
-		posts: -> model('posts').find({})
+		posts: -> model('posts').find()
