@@ -32,17 +32,21 @@ class Definer
 
 
 
-if Meteor.isServer
-	model 'posts',
-		# remove fields leave direct types, validations and callbacks
-		string:
-			'title'
-			'body'
-		before:
-			save: [
-				'title.length < 150'
-			]
+model 'posts',
+	# remove fields leave direct types, validations and callbacks
+	string: [
+		'title'
+		'body'
+	]
+	before:
+		save: [
+			'title.length < 150'
+		]
 
-		
+	
 
-	model 'settings', {}
+model 'settings', {}
+
+if Meteor.isClient
+	Template['/posts'].helpers
+		posts: -> model('posts').find({})

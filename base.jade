@@ -1,8 +1,22 @@
 head
 body
+	+nav
 
-template(name='home')
+template(name='nav')
+	.break
+		a(href='/') Home
+		a(href='/admin') Admin
+		a(href='/posts') Posts
+
+template(name='/')
 	h3 template
-	a(href='/admin') Admin
-	br
 	+loginButtons
+
+template(name='/admin')
+	h3 Admin
+
+template(name='/posts')
+	h3 Posts
+	each posts
+		h4 = title
+		p = body
